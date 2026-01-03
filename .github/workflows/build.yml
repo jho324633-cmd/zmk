@@ -23,18 +23,18 @@ jobs:
     if: ${{ always() }}
     runs-on: ubuntu-latest
     container:
-      image: docker.io/zmkfirmware/zmk-build-arm:4.1
+      image: docker.io/zmkfirmware/zmk-build-arm:0.3
     needs: compile-matrix
     strategy:
       matrix:
         include: ${{ fromJSON(needs.compile-matrix.outputs.include-list) }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v0.3
         with:
           persist-credentials: false
       - name: Cache west modules
-        uses: actions/cache@v4
+        uses: actions/cache@v0.3
         env:
           cache-name: cache-zephyr-modules
         with:
